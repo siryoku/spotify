@@ -9,8 +9,8 @@ from sklearn import tree
 
 
 # spotify developerから取得したclient_idとclient_secretを入力
-client_id = 'c1f950b505e64e6fb20c038bd86721bd'
-client_secret = '0853dbd65fba4d01ad9afd4441ef9b75'
+client_id = 'XXXXXXXXXXXXXXXX'
+client_secret = 'XXXXXXXXXXXXXXXXXXXXX'
 
 client_credentials_manager = SpotifyClientCredentials(client_id, client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
@@ -37,8 +37,8 @@ def getTrackIDs(playlist_ids):
 # SpotifyのプレイリストのIDを入力 プレイリストの曲の特徴量をとって
 # データセットとしてcsvファイルに書き出す。
 # ここでは、2019年と2020年のトップソングと、自分で作成した好きじゃない曲プレイリストをplaylist_idsに入れた。
-# playlist_ids = [ '5wkxij0vy6Umvjs9VXi05d?',]  
-playlist_ids = [ '37i9dQZF1EM59SOywmqHz7','37i9dQZF1EtlzsYZNwNNRQ']  # プレイリスト2つを書き出す場合
+# playlist_ids = [ 'XXXXXXXXXXXXXXXXX',]  
+playlist_ids = [ 'XXXXXXXXXXXXXXXX','XXXXXXXXXXXXXXXXXX']  # プレイリスト2つを書き出す場合
 
 track_ids = getTrackIDs(playlist_ids)
 
@@ -76,10 +76,10 @@ for track_id in track_ids:
   tracks.append(track)
 
 df1 = pd.DataFrame(tracks, columns = ['name', 'album', 'artist', 'release_date', 'length', 'popularity', 'key', 'mode', 'danceability', 'acousticness', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'time_signature', 'valence'])
-df1.to_csv('/Users/shibatasuguru/desktop/topsong.csv')
+df1.to_csv('/Users/topsong.csv')
 
 df2 = pd.DataFrame(tracks, columns = ['name', 'album', 'artist', 'release_date', 'length', 'popularity', 'key', 'mode', 'danceability', 'acousticness', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'time_signature', 'valence'])
-df2.to_csv('/Users/shibatasuguru/desktop/topsong.csv')
+df2.to_csv('/Users/topsong.csv')
 
 # プレイリストに"like"カラムの追加。好きな曲は＂1＂、好きではない曲は"0"
 df2["like"]=0
@@ -115,4 +115,4 @@ len(like_test), len(y_pred)
 like_test["pred"] = y_pred
 like_test["answer"] = like
 
-like_test.to_csv('/Users/shibatasuguru/desktop/answer.csv')
+like_test.to_csv('/Users/answer.csv')
